@@ -1,0 +1,32 @@
+.timer {
+  position: relative;
+  &__circle {
+    height: 1em;
+    width: 1em;
+    font-size: 15em;
+    overflow: visible !important;
+    transform: rotate(-90deg);
+
+    & circle {
+      stroke-width: 6%;
+      cx: 50%;
+      cy: 50%;
+      r: 4.5;
+    }
+    text {
+      font-size: 0.005em;
+      transform: rotate(180deg);
+    }
+    & .circle-two {
+      transition: stroke-dashoffset 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
+    }
+  }
+  &__time {
+    margin: 0;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 5em;
+  }
+}

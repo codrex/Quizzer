@@ -1,0 +1,31 @@
+.categories {
+  padding-bottom: 0;
+  &__header {
+    font-size: 1em;
+    margin-bottom: 1em;
+  }
+  &__wrapper {
+    margin: 1em 0;
+    width: 100%;
+    height: fit-content;
+    display: flex;
+    flex-direction: column;
+    padding: 0;
+    overflow: scroll;
+  }
+  &__item {
+    min-height: 4em;
+    animation: slide-in 1s;
+    animation-timing-function: cubic-bezier(0.52, 0.48, 0.52, 0.56);
+    animation-fill-mode: both;
+  }
+}
+
+@keyframes slide-in {
+  from {
+    transform: translateX(-100%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}

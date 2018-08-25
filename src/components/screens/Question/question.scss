@@ -1,0 +1,141 @@
+.question {
+  padding-bottom: 0;
+  padding-left: 5em;
+  padding-right: 5em;
+  font-size: 1em;
+  &__top {
+    height: 40%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+  }
+  &__bottom {
+    height: 60%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+  }
+
+  &__number {
+    height: fit-content;
+    width: fit-content;
+    position: fixed;
+    left: -0.1em;
+    top: -0.4em;
+    font-size: 16em;
+    color: rgba(#fff, 0.2);
+    &::after {
+      font-size: 0.15em;
+      content: attr(data-number);
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      color: #fff;
+      transform: translate(-50%, -50%);
+    }
+  }
+  &__icon {
+    color: rgba(#fff, 0.2);
+    font-size: 4em;
+    animation: icon-enter 1s;
+    animation-timing-function: cubic-bezier(0.52, 0.48, 0.52, 0.56);
+    animation-fill-mode: both;
+    position: absolute;
+    &:nth-child(1) {
+      left: 18%;
+    }
+    &:nth-child(2) {
+      right: 15%;
+      top: 5%;
+    }
+    &:nth-child(3) {
+      bottom: 10%;
+      left: 30%;
+    }
+
+    &:nth-child(4) {
+      bottom: 2%;
+      left: 60%;
+    }
+    &:nth-child(5) {
+      bottom: 2%;
+      right: 5%;
+    }
+  }
+  &__question {
+    color: #fff;
+    font-size: 2.5em;
+    max-width: 30em;
+    text-align: left;
+    margin-bottom: 0;
+    text-align: center;
+  }
+  &__options {
+    display: flex;
+    flex-wrap: wrap;
+    padding: 0;
+  }
+  &__option {
+    width: 50%;
+    min-height: 8em;
+    padding: 0.5em 0;
+    &:nth-child(odd) {
+      padding-right: 0.5em;
+    }
+    &:nth-child(even) {
+      padding-left: 0.5em;
+    }
+    & p {
+      width: 100%;
+      height: 100%;
+      background-color: rgba(#fff, 0.2);
+      margin: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: #fff;
+      cursor: pointer;
+      border-radius: 0.5em;
+      position: relative;
+      &:hover {
+        background-color: rgba(#fff, 0.3);
+      }
+      & svg {
+        margin-left: 1em;
+        position: absolute;
+        right: 0.9em;
+        top: 50%;
+        transform: translateY(-50%);
+        animation: none;
+        font-size: 2em;
+        // display: none;
+      }
+    }
+    &--correct svg {
+      color: green;
+    }
+
+    &--incorrect svg {
+      color: red;
+    }
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .question {
+    padding: 4em 1em 1em;
+    font-size: 0.8em;
+  }
+}
+
+@keyframes icon-enter {
+  from {
+    transform: translateY(-50%);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(30%);
+    opacity: 1;
+  }
+}

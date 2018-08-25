@@ -1,0 +1,39 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Start Screen should match snapshot 1`] = `
+<Screen
+  className="start-screen"
+  style={Object {}}
+>
+  <h1
+    className="start-screen__header"
+  >
+    Quizzer
+  </h1>
+  <main
+    className="start-screen__main"
+  >
+    <p
+      className="start-screen"
+    >
+       Current category is Books
+    </p>
+    <Button
+      className=""
+      handleClick={[Function]}
+      text="Start game"
+      type="button"
+    />
+  </main>
+  <footer
+    className="start-screen__footer"
+  >
+    <p>
+      powered by
+    </p>
+    <h2>
+      rexyz
+    </h2>
+  </footer>
+</Screen>
+`;
