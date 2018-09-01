@@ -29,6 +29,16 @@ class App extends PureComponent {
     actions.replace(ROUTES.categories);
   };
 
+  gotoHome = () => {
+    const { actions } = this.props;
+    actions.replace(ROUTES.start);
+  };
+
+  gotoCategories = () => {
+    const { actions } = this.props;
+    actions.replace(ROUTES.categories);
+  };
+
   renderRoute(route, Component, props = {}) {
     const { loading } = this.props;
     if (loading) {
@@ -39,7 +49,6 @@ class App extends PureComponent {
 
   render() {
     const { categories, actions, question } = this.props;
-    console.log('question', question);
     return (
       <AnimatedSwitch
         mapStyles={mapStyles}
@@ -57,6 +66,8 @@ class App extends PureComponent {
           ...question,
           getNextQuestion: actions.nextQuiz,
           time: 30,
+          gotoCategories: this.gotoCategories,
+          gotoHome: this.gotoHome,
         })}
       </AnimatedSwitch>
     );

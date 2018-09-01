@@ -18,7 +18,7 @@ function Button({
       style={style}
     >
       {icon && <AnimatedIcon className="btn__icon" icon={icon} />}
-      <span>{text}</span>
+      {text && <span>{text}</span>}
     </button>
   );
 }
@@ -34,7 +34,7 @@ Button.propTypes = {
 
 Button.defaultProps = {
   type: 'button',
-  text: 'click me',
+  text: '',
   handleClick: () => {},
   className: '',
   icon: '',

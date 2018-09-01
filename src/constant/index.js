@@ -1,16 +1,15 @@
-// import * as icons from '@fortawesome/free-solid-svg-icons/faN';
 // eslint-disable-next-line
 export const icons = ['faPercentage', 'faBasketballBall', 'faCameraRetro', 'faNewspaper'];
 export const categories = [
   {
     value: 12,
     name: 'music',
-    icons: ['faMicrophoneAlt', 'faHeadphones', 'faMusic', 'faDrum', 'faDrumSteelPan'],
+    icons: ['faMicrophoneAlt', 'faHeadphones', 'faMusic', 'faAudioDescription', 'faPlay'],
   },
   {
     name: 'book',
     value: 10,
-    icons: ['faBook', 'faPen', 'faParagraph', 'faPaperClip', 'faNewsPaper'],
+    icons: ['faBook', 'faPencilAlt', 'faParagraph', 'faPaperclip', 'faNewspaper'],
   },
   {
     name: 'film',
@@ -35,7 +34,7 @@ export const categories = [
   {
     name: 'history',
     value: 23,
-    icons: ['faHome', 'faGlobal', 'faArchway', 'faCrow', 'faAnchor'],
+    icons: ['faHome', 'faGlobe', 'faArchive', 'faCrow', 'faAnchor'],
   },
   {
     name: 'general',
@@ -45,7 +44,7 @@ export const categories = [
   {
     name: 'art',
     value: 24,
-    icons: ['faBuilding', 'faBrush', 'faMagic', 'faPalette', 'faQuoteRight'],
+    icons: ['faBuilding', 'faEraser', 'faMagic', 'faPalette', 'faQuoteRight'],
   },
   {
     name: 'vehicles',

@@ -2,7 +2,27 @@
   padding-bottom: 0;
   padding-left: 5em;
   padding-right: 5em;
-  font-size: 1em;
+  font-size: 0.8em;
+  &__menu {
+    position: absolute;
+    top: 0;
+    right: 0;
+    display: flex;
+    flex-direction: column;
+    padding: 1em;
+    &__btn {
+      height: 2.5em;
+      font-size: 1.5em;
+      background-color: transparent !important;
+      color: #fff;
+      &:last-child {
+        margin-top: 0.2em;
+      }
+      & svg {
+        margin: 0;
+      }
+    }
+  }
   &__top {
     height: 40%;
     display: flex;
@@ -66,11 +86,13 @@
   }
   &__question {
     color: #fff;
-    font-size: 2.5em;
+    font-size: 2em;
     max-width: 30em;
     text-align: left;
     margin-bottom: 0;
     text-align: center;
+    margin: 1.5em auto 0;
+    word-break: break-word;
   }
   &__options {
     display: flex;
@@ -91,7 +113,6 @@
       width: 100%;
       height: 100%;
       background-color: rgba(#fff, 0.2);
-      margin: 0;
       display: flex;
       justify-content: center;
       align-items: center;

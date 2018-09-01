@@ -3,11 +3,14 @@ import {
   number, string, arrayOf, func, oneOf,
 } from 'prop-types';
 import isEqual from 'lodash.isequal';
-import Screen from '../../common/Screen';
-import AnimatedIcon from '../../common/AnimatedIcon';
-import Timer from '../../common/Timer';
 import { decodeEscapedString } from '../../../utils';
 import { PAUSE, PLAY, STOP } from '../../../constant';
+
+import Screen from '../../common/Screen';
+import AnimatedIcon from '../../common/AnimatedIcon';
+import Button from '../../common/Button';
+import Timer from '../../common/Timer';
+
 import './question.scss';
 
 /* eslint-disable react/destructuring-assignment */
@@ -34,6 +37,8 @@ class Question extends PureComponent {
   }
 
   onOptionSelected = selection => () => {
+    const { answer } = this.state;
+    if (answer) return;
     this.setState({ selection });
     this.handleTimeUp();
   };
@@ -53,13 +58,18 @@ class Question extends PureComponent {
   };
 
   // eslint-disable-next-line
-  UNSAFE_componentWillReceiveProps({ time: nextTime, options: nextOptions = [] }) {
+  UNSAFE_componentWillReceiveProps({ time: nextTime, options: nextOptions = [], answer }) {
     const { time, options = [] } = this.state;
     if (nextTime !== time) {
       this.setState({ time: nextTime });
     }
+
     if (!isEqual(options.sort(), nextOptions.sort())) {
       this.setState({ options: nextOptions });
+    }
+
+    if (answer !== this.props.answer) {
+      this.setState({ answer: '' });
     }
   }
 
@@ -117,12 +127,23 @@ class Question extends PureComponent {
     );
   }
 
+  renderMenu() {
+    const { gotoCategories, gotoHome } = this.props;
+    return (
+      <div className="question__menu">
+        <Button className="question__menu__btn" icon="faHome" handleClick={gotoHome} />
+        <Button className="question__menu__btn" icon="faList" handleClick={gotoCategories} />
+      </div>
+    );
+  }
+
   render() {
     const { pageColor, question } = this.props;
     return (
       <Screen className="question" bgColor={pageColor}>
         {this.renderTopSection()}
         {question && this.renderBottomSection()}
+        {this.renderMenu()}
       </Screen>
     );
   }
@@ -138,6 +159,8 @@ Question.propTypes = {
   getNextQuestion: func,
   time: number,
   playState: oneOf([PLAY, PAUSE, STOP]).isRequired,
+  gotoHome: func.isRequired,
+  gotoCategories: func.isRequired,
 };
 
 Question.defaultProps = {
