@@ -4,10 +4,9 @@ import { getCategoriesUrl, getQuestionsUrl, baseUrl } from '../constant';
 
 async function makeReq(url) {
   try {
-    const payload = await axios.get(url);
-    return payload;
+    const { data } = await axios.get(url);
+    return data;
   } catch (error) {
-    console.log(error);
     return error;
   }
 }

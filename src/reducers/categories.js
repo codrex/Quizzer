@@ -1,11 +1,21 @@
 import defaultSate from './defaultSate';
-import { SET_CATEGORIES } from '../constant';
+import { SET_CATEGORIES, SET_CATEGORY } from '../constant';
 
-/* eslint-disable import/prefer-default-export */
 
-export function setCategories(initialState = defaultSate.categories, { type, payload }) {
-  const nextState = {
-    [SET_CATEGORIES]: payload,
-  };
-  return nextState[type] || initialState;
+export function setCategories(state = defaultSate.categories, { type, payload }) {
+  switch (type) {
+    case SET_CATEGORIES:
+      return payload;
+    default:
+      return state;
+  }
+}
+
+export function setCategory(state = defaultSate.category, { type, category }) {
+  switch (type) {
+    case SET_CATEGORY:
+      return category;
+    default:
+      return state;
+  }
 }

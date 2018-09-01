@@ -37,30 +37,31 @@
   }
   &__icon {
     color: rgba(#fff, 0.2);
-    font-size: 4em;
+    font-size: 3em;
     animation: icon-enter 1s;
     animation-timing-function: cubic-bezier(0.52, 0.48, 0.52, 0.56);
     animation-fill-mode: both;
     position: absolute;
     &:nth-child(1) {
-      left: 18%;
+      left: 10%;
+      bottom: 0;
     }
     &:nth-child(2) {
-      right: 15%;
-      top: 5%;
+      left: 30%;
+      bottom: 0;
     }
     &:nth-child(3) {
-      bottom: 10%;
-      left: 30%;
+      bottom: 0;
+      left: 50%;
     }
 
     &:nth-child(4) {
-      bottom: 2%;
-      left: 60%;
+      bottom: 0;
+      left: 70%;
     }
     &:nth-child(5) {
-      bottom: 2%;
-      right: 5%;
+      bottom: 0;
+      left: 90%;
     }
   }
   &__question {

@@ -1,46 +1,104 @@
 import React, { PureComponent } from 'react';
-import { number, string, func } from 'prop-types';
+import {
+  number, string, func, oneOf,
+} from 'prop-types';
+import { PAUSE, PLAY, STOP } from '../../../constant';
 import './timer.scss';
 
 const ONE_SEC = 1000;
-/* eslint-disable react/destructuring-assignment */
-class Timer extends PureComponent {
-  state = {
-    dashOffset: 100 / this.props.time,
-    currentTime: this.props.time,
-    dashRate: 100 / this.props.time,
-    dashArray: 28.27,
-  };
+const DASH_ARRAY = 28.27;
 
-  componentDidMount() {
-    const { dashArray } = this.state;
-    const dashOffset = Timer.getDashOffset(0, dashArray);
-    this.setState({ dashOffset });
-    this.updateTimer();
-  }
+/* eslint-disable react/destructuring-assignment, camelcase */
+class Timer extends PureComponent {
+  timeOutId = 0;
 
   static getDashOffset(offset, dashArray) {
     const offsetInFloat = offset / 100;
     return dashArray * (1 - offsetInFloat);
   }
 
+  state = {
+    dashOffset: DASH_ARRAY,
+    currentTime: this.props.time,
+    dashRate: 100 / this.props.time,
+    playState: this.props.playState,
+  };
+
+  componentDidMount() {
+    const { playState } = this.state;
+    this.handleTimerState(playState, true);
+  }
+
+  componentWillUnmount() {
+    clearInterval(this.timeOutId);
+  }
+
+  startTimerUpdate = () => {
+    const { time } = this.props;
+    const { currentTime } = this.state;
+    this.setState({ currentTime: currentTime || time });
+    this.timeOutId = this.updateTimer();
+  };
+
+  stopTimer = (init = false) => {
+    const { onTimeUp } = this.props;
+    this.setState({ dashOffset: DASH_ARRAY, currentTime: 0 }, () => {
+      clearInterval(this.timeOutId);
+      console.log('oooofoooofofofppp====================', this.state);
+    });
+    if (!init) onTimeUp();
+  };
+
   updateTimer = () => {
     const setIntervalId = setInterval(() => {
-      const { currentTime, dashRate, dashArray } = this.state;
-      const { time, onTimeExpires } = this.props;
+      const { currentTime, dashRate } = this.state;
+      const { time } = this.props;
       if (currentTime <= 0) {
-        onTimeExpires();
-        clearInterval(setIntervalId);
+        this.stopTimer();
       } else {
         const offset = (time - (currentTime - 1)) * dashRate;
-        const dashOffset = Timer.getDashOffset(offset, dashArray);
+        const dashOffset = Timer.getDashOffset(offset, DASH_ARRAY);
         this.setState({ currentTime: currentTime - 1, dashOffset });
       }
     }, ONE_SEC);
+    return setIntervalId;
   };
 
+  setPlayState = (playState, cb, init = false) => {
+    this.setState({ playState }, () => {
+      if (cb) cb(playState, init);
+    });
+  };
+
+  handleTimerState = (playState, init) => {
+    switch (playState) {
+      case STOP:
+        this.stopTimer(init);
+        break;
+      case PLAY:
+        this.startTimerUpdate();
+        break;
+      case PAUSE:
+        clearInterval(this.timeOutId);
+        break;
+      default:
+        break;
+    }
+  };
+
+  UNSAFE_componentWillReceiveProps(nextProps) {
+    const { playState, time } = nextProps;
+    if (playState !== this.state.playState) {
+      this.setPlayState(playState, this.handleTimerState, true);
+    }
+    const { currentTime } = this.state;
+    if (currentTime === 0 || time === 0) {
+      this.setState({ currentTime: time });
+    }
+  }
+
   render() {
-    const { currentTime, dashArray, dashOffset } = this.state;
+    const { currentTime, dashOffset } = this.state;
     const { topStrokeColor, bottomStrokeColor, textColor } = this.props;
     return (
       <div className="timer">
@@ -58,7 +116,7 @@ class Timer extends PureComponent {
           <circle
             fill="none"
             stroke={topStrokeColor}
-            strokeDasharray={`${dashArray}`}
+            strokeDasharray={`${DASH_ARRAY}`}
             strokeDashoffset={`${dashOffset}`}
             className="circle-two"
           />
@@ -73,7 +131,8 @@ Timer.propTypes = {
   topStrokeColor: string,
   bottomStrokeColor: string,
   textColor: string,
-  onTimeExpires: func,
+  onTimeUp: func,
+  playState: oneOf([PLAY, PAUSE, STOP]),
 };
 
 Timer.defaultProps = {
@@ -81,6 +140,7 @@ Timer.defaultProps = {
   topStrokeColor: '#e6e644',
   bottomStrokeColor: '#e6e6e6',
   textColor: '#000',
-  onTimeExpires: () => {},
+  onTimeUp: () => {},
+  playState: STOP,
 };
 export default Timer;

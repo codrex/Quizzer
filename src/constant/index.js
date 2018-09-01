@@ -1,3 +1,4 @@
+// import * as icons from '@fortawesome/free-solid-svg-icons/faN';
 // eslint-disable-next-line
 export const icons = ['faPercentage', 'faBasketballBall', 'faCameraRetro', 'faNewspaper'];
 export const categories = [
@@ -39,7 +40,7 @@ export const categories = [
   {
     name: 'general',
     value: 9,
-    icons: ['faPercentage', 'faBasketballBall', 'faCameraRetro', 'faNewsPaper'],
+    icons: ['faPercentage', 'faBasketballBall', 'faCameraRetro', 'faNewspaper', 'faHome'],
   },
   {
     name: 'art',
@@ -53,12 +54,31 @@ export const categories = [
   },
 ];
 
+export const FETCH_CATEGORIES = 'FETCH_CATEGORIES';
+export const SET_CATEGORIES = 'SET_CATEGORIES';
+export const SET_CATEGORY = 'SET_CATEGORY';
+export const FETCH_QUESTIONS = 'FETCH_QUESTIONS';
+export const SET_QUESTIONS = 'SET_QUESTIONS';
+export const FETCHING_START = 'FETCHING/START';
+export const FETCHING_END = 'FETCHING/END';
+export const START_QUIZ = 'QUIZ/START';
+export const END_QUIZ = 'QUIZ/END';
+export const NEXT_QUIZ = 'QUIZ/NEXT';
+export const UPDATE_CURRENT_ROUND = 'ROUND/CURRENT/UPDATE';
+export const ROUTE_CHANGED = '@@router/LOCATION_CHANGE';
+
+export const ROUTES = {
+  categories: '/categories',
+  start: '/',
+  question: '/question',
+};
+
+export const PLAY = 'PLAY';
+export const STOP = 'STOP';
+export const PAUSE = 'PAUSE';
+
 export const baseUrl = 'http://localhost:8000';
 export const getQuestionsUrl = '/api/quiz?category=';
 export const getCategoriesUrl = '/api/quiz/categories';
 
-
-export const FETCH_CATEGORIES = 'FETCH_CATEGORIES';
-export const SET_CATEGORIES = 'SET_CATEGORIES';
-export const FETCH_QUESTIONS = 'FETCH_QUESTIONS';
-export const SET_QUESTIONS = 'SET_QUESTIONS';
+export const GENERAL_CATEGORY = '9';

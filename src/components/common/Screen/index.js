@@ -8,7 +8,7 @@ import './screen.scss';
 class Screen extends PureComponent {
   renderIcons(className = 'screen__icons') {
     const { icons } = this.props;
-    return icons.map(icon => <AnimatedIcon icon={icon} className={className} />);
+    return icons.map(icon => <AnimatedIcon icon={icon} className={className} key={icon} />);
   }
 
   render() {
