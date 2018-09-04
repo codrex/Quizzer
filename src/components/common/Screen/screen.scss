@@ -7,7 +7,7 @@
   flex-direction: column;
   overflow: hidden;
   padding: 4em 0;
-
+  animation: fade-in 1s cubic-bezier(0.52, 0.48, 0.52, 0.56);
   transition: background-color 1.2s $easing-func;
 
   &__icons {
@@ -76,5 +76,14 @@
 
   @media screen and (max-width: 500px) and (min-resolution: 2dppx) and (min-resolution: 192dpi) {
     font-size: 0.8em;
+  }
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
   }
 }
