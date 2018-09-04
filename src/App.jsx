@@ -10,12 +10,12 @@ import {
 } from './actions';
 import { ROUTES } from './constant';
 import { getQuestion, getLoadingState, getCategories } from './selectors';
-import Categories from './components/screens/Categories';
-import Start from './components/screens/Start';
 import Loading from './components/screens/Loading';
-import Question from './components/screens/Question';
-import End from './components/screens/End';
+import {
+  End, Start, Questions, Categories,
+} from './routes';
 import './App.scss';
+
 
 class App extends PureComponent {
   static renderComponents(Component, props) {
@@ -72,7 +72,7 @@ class App extends PureComponent {
           handleClick: actions.fetchQuestions,
         })}
         {this.renderRoute(ROUTES.start, Start, { selectCategory: this.selectCategory })}
-        {this.renderRoute(ROUTES.question, Question, {
+        {this.renderRoute(ROUTES.question, Questions, {
           ...question,
           getNextQuestion: actions.nextQuiz,
           time: 30,
