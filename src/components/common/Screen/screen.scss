@@ -1,3 +1,4 @@
+@import '../../../styles/vars.scss';
 .screen {
   width: 100%;
   height: 100vh;
@@ -6,6 +7,8 @@
   flex-direction: column;
   overflow: hidden;
   padding: 4em 0;
+
+  transition: background-color 1.2s $easing-func;
 
   &__icons {
     color: white;
@@ -57,5 +60,21 @@
       bottom: 10em;
       animation-duration: 10s;
     }
+  }
+
+  @media screen and (max-width: 1024px) {
+    font-size: 1.5em;
+  }
+
+  @media screen and (min-width: 800px) and (min-resolution: 2dppx) and (min-resolution: 192dpi) {
+    font-size: 1.1em;
+  }
+
+  @media screen and (max-width: 799px) {
+    font-size: 0.8em;
+  }
+
+  @media screen and (max-width: 500px) and (min-resolution: 2dppx) and (min-resolution: 192dpi) {
+    font-size: 0.8em;
   }
 }

@@ -10,10 +10,7 @@ export const history = createBrowserHistory();
 const sagaMiddleware = createSagaMiddleware();
 const store = createStore(
   connectRouter(history)(reducers),
-  composeWithDevTools(
-    applyMiddleware(sagaMiddleware,
-      routerMiddleware(history)),
-  ),
+  composeWithDevTools(applyMiddleware(sagaMiddleware, routerMiddleware(history))),
 );
 sagaMiddleware.run(sagas);
 

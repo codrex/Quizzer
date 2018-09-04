@@ -1,58 +1,6 @@
 // eslint-disable-next-line
 export const icons = ['faPercentage', 'faBasketballBall', 'faCameraRetro', 'faNewspaper'];
-export const categories = [
-  {
-    value: 12,
-    name: 'music',
-    icons: ['faMicrophoneAlt', 'faHeadphones', 'faMusic', 'faAudioDescription', 'faPlay'],
-  },
-  {
-    name: 'book',
-    value: 10,
-    icons: ['faBook', 'faPencilAlt', 'faParagraph', 'faPaperclip', 'faNewspaper'],
-  },
-  {
-    name: 'film',
-    value: 11,
-    icons: ['faFilm', 'faCameraRetro', 'faImages', 'faMusic', 'faVideo'],
-  },
-  {
-    name: 'computers',
-    value: 18,
-    icons: ['faLaptop', 'faHdd', 'faServer', 'faMemory', 'faDatabase'],
-  },
-  {
-    name: 'sport',
-    value: 21,
-    icons: ['faBasketballBall', 'faFootballBall', 'faDumbbell', 'faFutbol', 'faTableTennis'],
-  },
-  {
-    name: 'mathematics',
-    value: 19,
-    icons: ['faDivide', 'faEquals', 'faPercentage', 'faPlus', 'faTimes'],
-  },
-  {
-    name: 'history',
-    value: 23,
-    icons: ['faHome', 'faGlobe', 'faArchive', 'faCrow', 'faAnchor'],
-  },
-  {
-    name: 'general',
-    value: 9,
-    icons: ['faPercentage', 'faBasketballBall', 'faCameraRetro', 'faNewspaper', 'faHome'],
-  },
-  {
-    name: 'art',
-    value: 24,
-    icons: ['faBuilding', 'faEraser', 'faMagic', 'faPalette', 'faQuoteRight'],
-  },
-  {
-    name: 'vehicles',
-    value: 28,
-    icons: ['faCar', 'faBus', 'faShip', 'faTruck', 'faSubway'],
-  },
-];
-
+export const colors = ['#2980b9', '#9b59b6', '#34495e', '#c79a38', '#e4744a'];
 export const FETCH_CATEGORIES = 'FETCH_CATEGORIES';
 export const SET_CATEGORIES = 'SET_CATEGORIES';
 export const SET_CATEGORY = 'SET_CATEGORY';
@@ -63,12 +11,16 @@ export const FETCHING_END = 'FETCHING/END';
 export const START_QUIZ = 'QUIZ/START';
 export const END_QUIZ = 'QUIZ/END';
 export const NEXT_QUIZ = 'QUIZ/NEXT';
+export const RESET_QUIZ = 'QUIZ/RESET';
+export const UPDATE_SCORE = 'SCORE/UPDATE';
+export const RESET_SCORE = 'SCORE/RESET';
 export const UPDATE_CURRENT_ROUND = 'ROUND/CURRENT/UPDATE';
 export const ROUTE_CHANGED = '@@router/LOCATION_CHANGE';
 
 export const ROUTES = {
   categories: '/categories',
   start: '/',
+  end: '/end',
   question: '/question',
 };
 
@@ -81,3 +33,4 @@ export const getQuestionsUrl = '/api/quiz?category=';
 export const getCategoriesUrl = '/api/quiz/categories';
 
 export const GENERAL_CATEGORY = '9';
+export const CATEGORY_KEY = 'CATEGORY';

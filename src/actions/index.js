@@ -10,8 +10,10 @@ import {
   NEXT_QUIZ,
   UPDATE_CURRENT_ROUND,
   SET_CATEGORY,
+  RESET_QUIZ,
+  UPDATE_SCORE,
+  RESET_SCORE,
 } from '../constant';
-
 
 export function setCategories(payload) {
   return {
@@ -31,6 +33,18 @@ export function setQuestions(payload) {
   return {
     type: SET_QUESTIONS,
     payload,
+  };
+}
+
+export function updateScore(score) {
+  return {
+    type: UPDATE_SCORE,
+    score,
+  };
+}
+export function resetScore() {
+  return {
+    type: RESET_SCORE,
   };
 }
 
@@ -64,4 +78,8 @@ export function endQuiz() {
 
 export function nextQuiz() {
   return { type: NEXT_QUIZ };
+}
+
+export function resetQuiz() {
+  return { type: RESET_QUIZ };
 }

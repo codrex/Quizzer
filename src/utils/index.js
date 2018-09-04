@@ -27,8 +27,15 @@ export function decodeEscapedString(eString) {
   const parser = new window.DOMParser();
   const dom = parser.parseFromString(eString, 'text/html');
   const decodedString = dom.body.textContent;
-  console.log(decodedString);
-
   if (typeof decodedString !== 'string') return '';
   return decodedString;
+}
+
+export function saveToLocalStorage(key = '', value = '') {
+  window.localStorage.setItem(key, value);
+}
+
+export function queryLocalStorage(key = '') {
+  const value = window.localStorage.getItem(key);
+  return value || '';
 }

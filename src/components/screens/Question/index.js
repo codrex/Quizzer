@@ -4,7 +4,9 @@ import {
 } from 'prop-types';
 import isEqual from 'lodash.isequal';
 import { decodeEscapedString } from '../../../utils';
-import { PAUSE, PLAY, STOP } from '../../../constant';
+import {
+  PAUSE, PLAY, STOP, colors,
+} from '../../../constant';
 
 import Screen from '../../common/Screen';
 import AnimatedIcon from '../../common/AnimatedIcon';
@@ -38,7 +40,9 @@ class Question extends PureComponent {
 
   onOptionSelected = selection => () => {
     const { answer } = this.state;
+    const { updateScore } = this.props;
     if (answer) return;
+    if (selection === this.props.answer) updateScore(1);
     this.setState({ selection });
     this.handleTimeUp();
   };
@@ -55,6 +59,12 @@ class Question extends PureComponent {
     const { answer, getNextQuestion } = this.props;
     this.setState({ answer, time: 0 });
     getNextQuestion();
+  };
+
+  resetQuiz = () => {
+    const { resetQuiz } = this.props;
+    this.setState({ answer: '' });
+    resetQuiz();
   };
 
   // eslint-disable-next-line
@@ -83,7 +93,6 @@ class Question extends PureComponent {
     const { time } = this.state;
     return (
       <div className="question__top">
-        {this.renderIcons()}
         <div className="question__number number-font" data-number={`0${questionNumber}`}>
           {`0${questionNumber}`}
         </div>
@@ -95,6 +104,7 @@ class Question extends PureComponent {
           time={time}
           playState={playState}
         />
+        <div className="question__icons">{this.renderIcons()}</div>
       </div>
     );
   }
@@ -107,7 +117,7 @@ class Question extends PureComponent {
         <p className="question__question">{decodeEscapedString(question)}</p>
         <ul className="question__options">
           {options.map((option) => {
-            const { className, icon } = this.getSelectionClass(option);
+            const { className = '' } = this.getSelectionClass(option);
             return (
               <div
                 key={option}
@@ -115,10 +125,7 @@ class Question extends PureComponent {
                 onClick={this.onOptionSelected(option)}
                 role="presentation"
               >
-                <p>
-                  {decodeEscapedString(option)}
-                  {icon && <AnimatedIcon icon={icon} />}
-                </p>
+                <p>{decodeEscapedString(option)}</p>
               </div>
             );
           })}
@@ -128,19 +135,20 @@ class Question extends PureComponent {
   }
 
   renderMenu() {
-    const { gotoCategories, gotoHome } = this.props;
+    const { gotoCategories, gotoHome, resetQuiz } = this.props;
     return (
       <div className="question__menu">
         <Button className="question__menu__btn" icon="faHome" handleClick={gotoHome} />
         <Button className="question__menu__btn" icon="faList" handleClick={gotoCategories} />
+        <Button className="question__menu__btn" icon="faRedoAlt" handleClick={resetQuiz} />
       </div>
     );
   }
 
   render() {
-    const { pageColor, question } = this.props;
+    const { question, number: questionNumber } = this.props;
     return (
-      <Screen className="question" bgColor={pageColor}>
+      <Screen className="question" bgColor={colors[questionNumber - 1]}>
         {this.renderTopSection()}
         {question && this.renderBottomSection()}
         {this.renderMenu()}
@@ -154,17 +162,17 @@ Question.propTypes = {
   icons: arrayOf(string),
   question: string.isRequired,
   options: arrayOf(string).isRequired,
-  pageColor: string,
   answer: string.isRequired,
   getNextQuestion: func,
   time: number,
   playState: oneOf([PLAY, PAUSE, STOP]).isRequired,
   gotoHome: func.isRequired,
   gotoCategories: func.isRequired,
+  resetQuiz: func.isRequired,
+  updateScore: func.isRequired,
 };
 
 Question.defaultProps = {
-  pageColor: 'crimson',
   icons: [],
   getNextQuestion: () => {},
   time: 30,

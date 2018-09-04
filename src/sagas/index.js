@@ -6,6 +6,7 @@ import {
   watchStart,
   watchUpdateCategory,
   watchLocationChange,
+  watchResetQuiz,
 } from './quizSaga';
 
 function* sagas() {
@@ -17,6 +18,7 @@ function* sagas() {
     fork(watchStart),
     fork(watchUpdateCategory),
     fork(watchLocationChange),
+    fork(watchResetQuiz),
   ]);
 }
 

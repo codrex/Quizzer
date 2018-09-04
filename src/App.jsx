@@ -3,15 +3,18 @@ import { Route } from 'react-router-dom';
 import { AnimatedSwitch } from 'react-router-transition';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { replace } from 'connected-react-router';
+import { replace, push } from 'connected-react-router';
 import { mapStyles, bounceTransition } from './pageAnimations';
-import { fetchQuestions, fetchCategories, nextQuiz } from './actions';
+import {
+  fetchQuestions, fetchCategories, nextQuiz, resetQuiz, updateScore,
+} from './actions';
 import { ROUTES } from './constant';
 import { getQuestion, getLoadingState, getCategories } from './selectors';
 import Categories from './components/screens/Categories';
 import Start from './components/screens/Start';
 import Loading from './components/screens/Loading';
 import Question from './components/screens/Question';
+import End from './components/screens/End';
 import './App.scss';
 
 class App extends PureComponent {
@@ -34,6 +37,11 @@ class App extends PureComponent {
     actions.replace(ROUTES.start);
   };
 
+  gotoQuestion = () => {
+    const { actions } = this.props;
+    actions.push(ROUTES.question);
+  };
+
   gotoCategories = () => {
     const { actions } = this.props;
     actions.replace(ROUTES.categories);
@@ -48,7 +56,9 @@ class App extends PureComponent {
   }
 
   render() {
-    const { categories, actions, question } = this.props;
+    const {
+      categories, actions, question, score,
+    } = this.props;
     return (
       <AnimatedSwitch
         mapStyles={mapStyles}
@@ -68,6 +78,14 @@ class App extends PureComponent {
           time: 30,
           gotoCategories: this.gotoCategories,
           gotoHome: this.gotoHome,
+          resetQuiz: actions.resetQuiz,
+          updateScore: actions.updateScore,
+        })}
+        {this.renderRoute(ROUTES.end, End, {
+          gotoCategories: this.gotoCategories,
+          gotoHome: this.gotoHome,
+          resetQuiz: actions.resetQuiz,
+          score,
         })}
       </AnimatedSwitch>
     );
@@ -80,6 +98,7 @@ function mapStateToProps(state) {
     categories: getCategories(state),
     question: getQuestion(state),
     loading: getLoadingState(state),
+    score: state.score,
     router,
   };
 }
@@ -92,6 +111,9 @@ function mapDispatchToProps(dispatch) {
         fetchCategories,
         replace,
         nextQuiz,
+        resetQuiz,
+        updateScore,
+        push,
       },
       dispatch,
     ),

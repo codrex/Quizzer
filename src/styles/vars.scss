@@ -4,3 +4,5 @@ $text-color: #090909;
 $header-text-color: $text-color;
 $body-text-color: rgba($text-color, 0.8);
 $body-text-color-light: rgba($body-text-color, 0.4);
+
+$easing-func: cubic-bezier(0.52, 0.48, 0.52, 0.56);

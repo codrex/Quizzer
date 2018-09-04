@@ -2,19 +2,24 @@ import { takeLatest, call, put } from 'redux-saga/effects';
 import { replace } from 'connected-react-router';
 import { getCategories, getQuestions } from '../api';
 import {
-  FETCH_CATEGORIES, FETCH_QUESTIONS, ROUTES, GENERAL_CATEGORY,
+  FETCH_CATEGORIES,
+  FETCH_QUESTIONS,
+  ROUTES,
+  GENERAL_CATEGORY,
+  CATEGORY_KEY,
 } from '../constant';
 import {
   setCategories, setQuestions, fetchingEnd, fetchingStart, setCategory,
 } from '../actions';
-import { arrayToObject } from '../utils';
+import { arrayToObject, queryLocalStorage } from '../utils';
 
 export function* fetchCategories() {
   try {
     let payload = yield call(getCategories);
     payload = arrayToObject(payload.data, 'value');
+    const category = queryLocalStorage(CATEGORY_KEY) || GENERAL_CATEGORY;
     yield put(setCategories(payload));
-    yield put(setCategory(payload[GENERAL_CATEGORY]));
+    yield put(setCategory(payload[category]));
   } catch (error) {
     console.log(String(error));
   }

@@ -10,5 +10,6 @@ const state = {
     current: 0,
     playState: STOP,
   },
+  score: 0,
 };
 export default state;

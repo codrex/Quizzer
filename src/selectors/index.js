@@ -11,7 +11,6 @@ export const getCategories = state => Object.values(state.categories);
 export const getQuestion = createSelector(
   [getQuestions, getCurrentRound, getCategory, getPlayState],
   (questions, round, { icons }, playState) => {
-    console.log(round, '====qqqqqquququ');
     const question = questions[round - 1] || {};
     return {
       ...formatQuestion(question),
