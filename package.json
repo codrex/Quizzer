@@ -71,7 +71,7 @@
     "start": "node scripts/start.js",
     "build": "node scripts/build.js",
     "predeploy": "yarn build",
-    "deploy": "gh-pages -b master -d build",
+    "deploy": "gh-pages -b gh-page -d build",
     "test": "node scripts/test.js --env=jsdom"
   },
   "jest": {
