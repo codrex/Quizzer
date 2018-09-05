@@ -1,5 +1,6 @@
 {
   "name": "quizzer",
+  "homepage": "https://codrex.github.io/Quizzer/",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
