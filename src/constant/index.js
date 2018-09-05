@@ -28,7 +28,7 @@ export const PLAY = 'PLAY';
 export const STOP = 'STOP';
 export const PAUSE = 'PAUSE';
 
-export const baseUrl = 'http://localhost:8000';
+export const baseUrl = process.env === 'development' ? 'http://localhost:8000' : 'https://quizzeronline.herokuapp.com';
 export const getQuestionsUrl = '/api/quiz?category=';
 export const getCategoriesUrl = '/api/quiz/categories';
 
