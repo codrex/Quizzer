@@ -1,0 +1,89 @@
+@import '../../../styles/vars.scss';
+.screen {
+  width: 100%;
+  height: 100vh;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  padding: 4em 0;
+  animation: fade-in 1s cubic-bezier(0.52, 0.48, 0.52, 0.56);
+  transition: background-color 1.2s $easing-func;
+
+  &__icons {
+    color: white;
+    position: absolute;
+    &:first-child {
+      right: 2em;
+      top: 1em;
+      animation-duration: 7.5s;
+    }
+    &:nth-child(2) {
+      left: 0.5em;
+      top: 2em;
+      animation-duration: 8s;
+    }
+
+    &:nth-child(3) {
+      right: 1em;
+      bottom: 3em;
+      animation-duration: 6.9s;
+    }
+    &:nth-child(4) {
+      left: 1em;
+      bottom: 2em;
+      animation-duration: 10s;
+    }
+  }
+  &__icons-small {
+    color: rgba(#fff, 0.6);
+    position: absolute;
+    font-size: 2em;
+    &:nth-child(5) {
+      left: 5em;
+      bottom: 7em;
+      animation-duration: 7.5s;
+    }
+    &:nth-child(6) {
+      right: 7em;
+      bottom: 2em;
+      animation-duration: 8s;
+    }
+
+    &:nth-child(7) {
+      left: 3em;
+      top: 10em;
+      animation-duration: 6.9s;
+    }
+    &:nth-child(8) {
+      right: 2em;
+      bottom: 10em;
+      animation-duration: 10s;
+    }
+  }
+
+  @media screen and (max-width: 1024px) {
+    font-size: 1.5em;
+  }
+
+  @media screen and (min-width: 800px) and (min-resolution: 2dppx) and (min-resolution: 192dpi) {
+    font-size: 1.1em;
+  }
+
+  @media screen and (max-width: 799px) {
+    font-size: 0.8em;
+  }
+
+  @media screen and (max-width: 500px) and (min-resolution: 2dppx) and (min-resolution: 192dpi) {
+    font-size: 0.8em;
+  }
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}

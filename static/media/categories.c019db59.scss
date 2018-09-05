@@ -1,0 +1,22 @@
+.categories {
+  padding: 0;
+  &__header {
+    font-size: 1.2em;
+    margin: 2em 0;
+  }
+  &__wrapper {
+    margin: 1em 0;
+    width: 100%;
+    height: fit-content;
+    display: flex;
+    flex-direction: column;
+    padding: 0;
+    overflow: scroll;
+    max-width: 40em;
+    margin: 0 auto;
+    margin-bottom: 2em;
+  }
+  &__item {
+    min-height: 4em;
+  }
+}
