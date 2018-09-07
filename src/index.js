@@ -5,13 +5,16 @@ import { Provider } from 'react-redux';
 import { ConnectedRouter } from 'connected-react-router';
 import './styles/index.scss';
 import App from './App';
+import Error from './components/screens/Error';
 import store, { history } from './store';
 
 ReactDOM.render(
-  <Provider store={store}>
-    <ConnectedRouter history={history}>
-      <App />
-    </ConnectedRouter>
-  </Provider>,
+  <Error>
+    <Provider store={store}>
+      <ConnectedRouter history={history}>
+        <App />
+      </ConnectedRouter>
+    </Provider>
+  </Error>,
   document.getElementById('root'),
 );

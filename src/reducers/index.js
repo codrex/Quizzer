@@ -4,6 +4,7 @@ import { setQuestions } from './questions';
 import { setFetching } from './fetching';
 import { rounds } from './rounds';
 import { updateScore } from './score';
+import { setError } from './error';
 import defaultState from './defaultSate';
 
 const reducers = combineReducers({
@@ -12,6 +13,7 @@ const reducers = combineReducers({
   fetching: setFetching,
   category: setCategory,
   score: updateScore,
+  error: setError,
   rounds,
   defaultState,
 });

@@ -9,7 +9,12 @@ import {
   CATEGORY_KEY,
 } from '../constant';
 import {
-  setCategories, setQuestions, fetchingEnd, fetchingStart, setCategory,
+  setCategories,
+  setQuestions,
+  fetchingEnd,
+  fetchingStart,
+  setCategory,
+  setError,
 } from '../actions';
 import { arrayToObject, queryLocalStorage } from '../utils';
 
@@ -21,7 +26,9 @@ export function* fetchCategories() {
     yield put(setCategories(payload));
     yield put(setCategory(payload[category]));
   } catch (error) {
-    console.log(String(error));
+    yield put(
+      setError(ROUTES.categories, { message: 'Error occurred while fetching categories', error }),
+    );
   }
 }
 
@@ -35,13 +42,14 @@ export function* fetchQuestions({ category }) {
     yield put(fetchingEnd());
     yield put(replace(ROUTES.question));
   } catch (error) {
-    console.log(error);
+    yield put(
+      setError(ROUTES.question, { message: 'Error occurred while fetching questions', error }),
+    );
   }
 }
 //= ===========Watchers===================//
 
 export function* watchFetchCategories() {
-  console.log('FETCH_CATEGORIES');
   yield takeLatest(FETCH_CATEGORIES, fetchCategories);
 }
 

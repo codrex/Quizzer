@@ -1,13 +1,12 @@
 import axios from 'axios';
 import { getCategoriesUrl, getQuestionsUrl, baseUrl } from '../constant';
 
-
 async function makeReq(url) {
   try {
     const { data } = await axios.get(url);
     return data;
   } catch (error) {
-    return error;
+    throw error;
   }
 }
 

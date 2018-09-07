@@ -14,21 +14,23 @@ export const NEXT_QUIZ = 'QUIZ/NEXT';
 export const RESET_QUIZ = 'QUIZ/RESET';
 export const UPDATE_SCORE = 'SCORE/UPDATE';
 export const RESET_SCORE = 'SCORE/RESET';
+export const ERROR_OCCURRED = 'ERROR/OCCURRED';
 export const UPDATE_CURRENT_ROUND = 'ROUND/CURRENT/UPDATE';
 export const ROUTE_CHANGED = '@@router/LOCATION_CHANGE';
 
 export const ROUTES = {
-  categories: '/categories',
-  start: '/',
-  end: '/end',
-  question: '/question',
+  categories: '/Quizzer/categories',
+  start: '/Quizzer/',
+  end: '/Quizzer/end',
+  question: '/Quizzer/question',
 };
 
 export const PLAY = 'PLAY';
 export const STOP = 'STOP';
 export const PAUSE = 'PAUSE';
-
-export const baseUrl = process.env === 'development' ? 'http://localhost:8000' : 'https://quizzeronline.herokuapp.com';
+export const baseUrl = process.env.NODE_ENV === 'development'
+  ? 'http://localhost:8000'
+  : 'https://quizzeronline.herokuapp.com';
 export const getQuestionsUrl = '/api/quiz?category=';
 export const getCategoriesUrl = '/api/quiz/categories';
 

@@ -13,6 +13,7 @@ import {
   RESET_QUIZ,
   UPDATE_SCORE,
   RESET_SCORE,
+  ERROR_OCCURRED,
 } from '../constant';
 
 export function setCategories(payload) {
@@ -45,6 +46,14 @@ export function updateScore(score) {
 export function resetScore() {
   return {
     type: RESET_SCORE,
+  };
+}
+
+export function setError(name, error) {
+  return {
+    type: ERROR_OCCURRED,
+    name,
+    error,
   };
 }
 

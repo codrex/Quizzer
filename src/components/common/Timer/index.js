@@ -44,7 +44,6 @@ class Timer extends PureComponent {
     const { onTimeUp } = this.props;
     this.setState({ dashOffset: DASH_ARRAY, currentTime: 0 }, () => {
       clearInterval(this.timeOutId);
-      console.log('oooofoooofofofppp====================', this.state);
     });
     if (!init) onTimeUp();
   };
