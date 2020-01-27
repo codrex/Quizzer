@@ -1,5 +1,10 @@
 // eslint-disable-next-line
-export const icons = ['faPercentage', 'faBasketballBall', 'faCameraRetro', 'faNewspaper'];
+export const icons = [
+  'faPercentage',
+  'faBasketballBall',
+  'faCameraRetro',
+  'faNewspaper',
+];
 export const colors = ['#2980b9', '#9b59b6', '#34495e', '#c79a38', '#e4744a'];
 export const FETCH_CATEGORIES = 'FETCH_CATEGORIES';
 export const SET_CATEGORIES = 'SET_CATEGORIES';
@@ -19,18 +24,16 @@ export const UPDATE_CURRENT_ROUND = 'ROUND/CURRENT/UPDATE';
 export const ROUTE_CHANGED = '@@router/LOCATION_CHANGE';
 
 export const ROUTES = {
-  categories: '/Quizzer/categories',
-  start: '/Quizzer/',
-  end: '/Quizzer/end',
-  question: '/Quizzer/question',
+  categories: '/categories',
+  start: '/',
+  end: '/end',
+  question: '/question',
 };
 
 export const PLAY = 'PLAY';
 export const STOP = 'STOP';
 export const PAUSE = 'PAUSE';
-export const baseUrl = process.env.NODE_ENV === 'development'
-  ? 'http://localhost:8000'
-  : 'https://quizzeronline.herokuapp.com';
+export const baseUrl = 'https://quizzeronline.herokuapp.com';
 export const getQuestionsUrl = '/api/quiz?category=';
 export const getCategoriesUrl = '/api/quiz/categories';
 
